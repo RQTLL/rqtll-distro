@@ -7,7 +7,7 @@ GREEN='\033[0;32m'
 BLUE='\033[0;34m'
 NC='\033[0;37m'
 
-if [ "$EUID" -ne 0 ]; then
+if [ "$(id -u)" -ne 0 ]; then
     printf "${RED}RQTLL Installer: ${NC}Este script debe ser ejecutado con privilegios de administrador (sudo).\n"
     exit 1
 fi

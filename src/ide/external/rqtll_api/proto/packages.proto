@@ -1,0 +1,30 @@
+syntax = "proto3";
+package rqtll.api.v1;
+
+service PackageService {
+    rpc ListAvailablePackages (ListPackagesRequest) returns (stream PackageInfo);
+    rpc InstallPackage (InstallRequest) returns (stream InstallProgress);
+}
+
+message ListPackagesRequest {
+    string filter = 1;
+    bool show_ros = 2;
+    bool show_python = 3;
+    bool show_rti = 4;
+}
+
+message PackageInfo {
+    string name = 1;
+    string version = 2;
+    string description = 3;
+    bool is_installed = 4;
+}
+
+message InstallRequest {
+    string package_name = 1;
+}
+
+message InstallProgress {
+    string log_line = 1;
+    float progress = 2;
+}

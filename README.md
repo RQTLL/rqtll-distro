@@ -46,7 +46,7 @@ git submodule update --init --recursive
 
 ```bash
 # Entrar al submodulo rqtll-ide
-cd rqtll-components/rqtll-ide
+cd external/rqtll-ide
 
 # Instalar dependencias de Python
 python3 -m venv .venv
@@ -84,7 +84,7 @@ python3 -m nuitka3 ${OPTS} ${DIRS}
 
 ```bash
 # Entrar al submodulo rqtll-service
-cd rqtll-components/rqtll-service
+cd external/rqtll-service
 
 # Construir el binario
 cargo build --release

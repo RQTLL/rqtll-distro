@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+package rqtll.api.v1;
+
+import "types.proto";
+
+message RunRequest {
+	string package = 1;
+	string executable = 2;
+	repeated string args = 3;
+	repeated string ros_args = 4;
+	map<string, string> env = 5;
+	string cwd = 6;
+	
+	bool use_launch = 7;
+	string launch_file = 8;
+}
+
+message StopRequest {
+	oneof ev {
+		int32 pid = 1;
+		string node_name = 2; 
+	}
+	bool force = 3;
+}
+
+message ExecEvent {
+	oneof ev {
+		LogEntry log = 1;
+		Status status = 2;
+		int32 exit_code = 3;
+	}
+}
+
+message LaunchListResponse {
+	repeated string launch_files = 1;
+	Status status = 2;
+}
+
+service ExecutionService {
+	rpc Run(RunRequest) returns (stream ExecEvent);
+
+	rpc Stop(StopRequest) returns (Status);
+
+	rpc ListLaunchFiles(Empty) returns (LaunchListResponse);
+}

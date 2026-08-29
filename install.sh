@@ -21,6 +21,7 @@ TEMP_DIR="/tmp/rqtll-distro-temp"
 if [ ! -d "src/ide" ] || [ ! -d "src/service" ]; then
     printf "${BLUE}RQTLL Installer: ${NC}Clonando rqtll-distro para obtener los binarios...\n"
     rm -rf "${TEMP_DIR}"
+    sudo apt install -y libxcb-cursor0
     git clone --recursive https://github.com/RQTLL/rqtll-distro.git "${TEMP_DIR}"
     cd "${TEMP_DIR}"
     CLONED_TEMP=1

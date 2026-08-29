@@ -40,7 +40,7 @@ done
 if [ $NEED_APT -eq 1 ]; then
     printf "${BLUE}RQTLL Build: ${NC}Instalando dependencias de compilación del sistema (apt)...\n"
     sudo apt update
-    sudo apt install -y curl build-essential python3 python3-pip patchelf
+    sudo apt install -y curl build-essential python3 python3-pip patchelf protobuf-compiler
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
     echo source "$HOME/.cargo/env" > .bashrc
     rustup update

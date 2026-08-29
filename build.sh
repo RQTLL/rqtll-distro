@@ -62,9 +62,11 @@ else
     rustup update || true
 fi
 
-    
-if [ "$NUITKA_EXEC" = "nuitka" ] && [ -f "$HOME/.local/bin/nuitka" ]; then
-    NUITKA_EXEC="$HOME/.local/bin/nuitka"
+NUITKA_EXEC="nuitka"
+if ! command -v nuitka >/dev/null 2>&1; then
+    if [ -f "$HOME/.local/bin/nuitka" ]; then
+        NUITKA_EXEC="$HOME/.local/bin/nuitka"
+    fi
 fi
 
 rm -rf "${DIST_DIR}/src"

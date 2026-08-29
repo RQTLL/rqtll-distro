@@ -7,13 +7,28 @@ GREEN='\033[0;32m'
 BLUE='\033[0;34m'
 NC='\033[0;37m'
 
+RAW_ARCH=$(dpkg --print-architecture 2>/dev/null || uname -m)
+case "${RAW_ARCH}" in
+    x86_64|amd64)
+        TARGET_ARCH="amd64"
+        ;;
+    aarch64|arm64)
+        TARGET_ARCH="arm64"
+        ;;
+    *)
+        printf "${RED}RQTLL Build: ${NC}Arquitectura no soportada: %s\n" "${RAW_ARCH}"
+        exit 1
+        ;;
+esac
+
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 WORKSPACE_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
 DIST_DIR="${WORKSPACE_DIR}/rqtll-distro"
 IDE_DIR="${WORKSPACE_DIR}/rqtll-ide"
 SERVICE_DIR="${WORKSPACE_DIR}/rqtll-service"
+OUTPUT_SRC="${DIST_DIR}/src/${TARGET_ARCH}"
 
-
+printf "${BLUE}RQTLL Build: ${GREEN}${TARGET_ARCH}${NC}\n"
 printf "${BLUE}RQTLL Build: ${NC}Verificando directorios de trabajo...\n"
 
 for repo in rqtll-api rqtll-components rqtll-widgets rqtll-ide rqtll-service; do
@@ -40,8 +55,7 @@ done
 if [ $NEED_APT -eq 1 ]; then
     printf "${BLUE}RQTLL Build: ${NC}Instalando dependencias de compilación del sistema (apt)...\n"
     sudo apt update
-    sudo apt install -y curl build-essential python3 python3-pip patchelf protobuf-compiler
-    sudo apt install -y libxcb-cursor0
+    sudo apt install -y curl build-essential python3 python3-pip patchelf protobuf-compiler libxcb-cursor0
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
     source "$HOME/.cargo/env"
     rustup update
@@ -69,26 +83,20 @@ if ! command -v nuitka >/dev/null 2>&1; then
     fi
 fi
 
-rm -rf "${DIST_DIR}/src"
-mkdir -p "${DIST_DIR}/src/ide"
-mkdir -p "${DIST_DIR}/src/service"
+rm -rf "${OUTPUT_SRC}"
+mkdir -p "${OUTPUT_SRC}/ide"
+mkdir -p "${OUTPUT_SRC}/service"
 
-
-printf "${BLUE}RQTLL Build: ${NC}Compilando backend de Rust (rqtll-service)...\n"
+printf "${BLUE}RQTLL Build: ${NC}Compilando backend a ${DIST_DIR}/src/service ...\n"
 cd "${SERVICE_DIR}"
-if [ -d "external/rqtll-api/proto" ]; then
-    cargo build --release
-else
-    cargo build --release
-fi
+cargo build --release
 
-cp "target/release/rqtll_service" "${DIST_DIR}/src/service/rqtll_service"
-cp "src/services/image_bridge.py" "${DIST_DIR}/src/service/image_bridge.py"
-chmod +x "${DIST_DIR}/src/service/rqtll_service"
-chmod +x "${DIST_DIR}/src/service/image_bridge.py"
+cp "target/release/rqtll_service" "${OUTPUT_SRC}/service/rqtll_service"
+cp "src/services/image_bridge.py" "${OUTPUT_SRC}/service/image_bridge.py"
+chmod +x "${OUTPUT_SRC}/service/rqtll_service"
+chmod +x "${OUTPUT_SRC}/service/image_bridge.py"
 
-
-printf "${BLUE}RQTLL Build: ${NC}Compilando frontend (rqtll-ide) con Nuitka...\n"
+printf "${BLUE}RQTLL Build: ${NC}Compilando frontend a ${DIST_DIR}/src/ide ...\n"
 cd "${IDE_DIR}"
 rm -rf main.build main.dist
 
@@ -109,10 +117,11 @@ cp -r "external/rqtll_components" "main.dist/external/"
 cp -r "external/rqtll_widgets" "main.dist/external/"
 cp -r "external/rqtll_api" "main.dist/external/"
 
-rm -rf "${DIST_DIR}/src/ide"
-mkdir -p "${DIST_DIR}/src/ide"
-cp -a main.dist/. "${DIST_DIR}/src/ide/"
-chmod +x "${DIST_DIR}/src/ide/main"
+rm -rf "${OUTPUT_SRC}/ide"
+mkdir -p "${OUTPUT_SRC}/ide"
+cp -a main.dist/. "${OUTPUT_SRC}/ide/"
+chmod +x "${OUTPUT_SRC}/ide/main"
 rm -rf main.build main.dist
+rm -rf "${OUTPUT_SRC}/src/ide/external/rqtll_components/releases/"
 
 printf "${GREEN}RQTLL Build: ${NC}Construcción finalizada con éxito\n"

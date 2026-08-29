@@ -41,9 +41,13 @@ if [ $NEED_APT -eq 1 ]; then
     printf "${BLUE}RQTLL Build: ${NC}Instalando dependencias de compilación del sistema (apt)...\n"
     sudo apt update
     sudo apt install -y curl build-essential python3 python3-pip patchelf protobuf-compiler
+    sudo apt install -y libxcb-cursor0
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-    echo source "$HOME/.cargo/env" > .bashrc
+    source "$HOME/.cargo/env"
     rustup update
+    printf "${BLUE}RQTLL Build: ${NC}Instalando dependencias de Python via pip...\n"
+    pip3 install --user --break-system-packages nuitka pyside6 grpcio-tools protobuf || \
+    pip3 install --user nuitka pyside6 grpcio-tools protobuf || true
 fi
 
 if ! command -v cargo >/dev/null 2>&1; then
@@ -58,31 +62,9 @@ else
     rustup update || true
 fi
 
-NEED_PYTHON_LIBS=0
-for pkg in PySide6 grpc_tools google.protobuf; do
-    if ! python3 -c "import ${pkg/google.protobuf/google.protobuf}" >/dev/null 2>&1; then
-        NEED_PYTHON_LIBS=1
-        break
-    fi
-done
-
-NUITKA_EXEC="nuitka"
-if ! command -v nuitka >/dev/null 2>&1; then
-    if [ -f "$HOME/.local/bin/nuitka" ]; then
-        NUITKA_EXEC="$HOME/.local/bin/nuitka"
-    else
-        NEED_PYTHON_LIBS=1
-    fi
-fi
-
-if [ $NEED_PYTHON_LIBS -eq 1 ]; then
-    printf "${BLUE}RQTLL Build: ${NC}Instalando dependencias de Python via pip...\n"
-    pip3 install --user --break-system-packages nuitka pyside6 grpcio-tools protobuf || \
-    pip3 install --user nuitka pyside6 grpcio-tools protobuf || true
     
-    if [ "$NUITKA_EXEC" = "nuitka" ] && [ -f "$HOME/.local/bin/nuitka" ]; then
-        NUITKA_EXEC="$HOME/.local/bin/nuitka"
-    fi
+if [ "$NUITKA_EXEC" = "nuitka" ] && [ -f "$HOME/.local/bin/nuitka" ]; then
+    NUITKA_EXEC="$HOME/.local/bin/nuitka"
 fi
 
 rm -rf "${DIST_DIR}/src"

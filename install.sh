@@ -5,26 +5,47 @@ set -euo pipefail
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 BLUE='\033[0;34m'
-NC='\033[0;37m'
+NC='\033[0m'
 
 if [ "$(id -u)" -ne 0 ]; then
     printf "${RED}RQTLL Installer: ${NC}Este script debe ser ejecutado con privilegios de administrador (sudo).\n"
     exit 1
 fi
 
+RAW_ARCH=$(dpkg --print-architecture 2>/dev/null || uname -m)
+case "${RAW_ARCH}" in
+    x86_64|amd64)
+        TARGET_ARCH="amd64"
+        ;;
+    aarch64|arm64)
+        TARGET_ARCH="arm64"
+        ;;
+    *)
+        printf "${RED}RQTLL Installer: ${NC}Arquitectura no soportada: %s\n" "${RAW_ARCH}"
+        exit 1
+        ;;
+esac
 
+SRC_BASE="src/${TARGET_ARCH}"
+
+printf "${BLUE}RQTLL Installer: ${NC}Arquitectura detectada: ${GREEN}${TARGET_ARCH}${NC}\n"
 printf "${BLUE}RQTLL Installer: ${NC}Verificando directorios de trabajo\n"
 
 CLONED_TEMP=0
 TEMP_DIR="/tmp/rqtll-distro-temp"
 
-if [ ! -d "src/ide" ] || [ ! -d "src/service" ]; then
+if [ ! -d "${SRC_BASE}/ide" ] || [ ! -d "${SRC_BASE}/service" ]; then
     printf "${BLUE}RQTLL Installer: ${NC}Clonando rqtll-distro para obtener los binarios...\n"
     rm -rf "${TEMP_DIR}"
-    sudo apt install -y libxcb-cursor0
+    apt install -y libxcb-cursor0
     git clone --recursive https://github.com/RQTLL/rqtll-distro.git "${TEMP_DIR}"
     cd "${TEMP_DIR}"
     CLONED_TEMP=1
+fi
+
+if [ ! -d "${SRC_BASE}/ide" ] || [ ! -d "${SRC_BASE}/service" ]; then
+    printf "${RED}RQTLL Installer: ${NC}No se encontraron los binarios compilados para la arquitectura: %s en %s\n" "${TARGET_ARCH}" "${SRC_BASE}"
+    exit 1
 fi
 
 INSTALL_DIR="/opt/rqtll"
@@ -36,7 +57,6 @@ DESKTOP_SYSTEM_DIR="/usr/share/applications"
 USER_HOME="${SUDO_USER_HOME:-/home/${SUDO_USER:-root}}"
 USER_ICON_DIR="${USER_HOME}/.local/share/icons"
 USER_DESKTOP_DIR="${USER_HOME}/.local/share/applications"
-
 
 printf "${BLUE}RQTLL Installer: ${NC}Creando directorios del sistema...\n"
 
@@ -52,28 +72,28 @@ if [ -n "${SUDO_USER:-}" ]; then
     mkdir -p "${USER_DESKTOP_DIR}"
 fi
 
-if [ -d "src/ide" ] && [ "$(ls -A src/ide)" ]; then
+if [ -d "${SRC_BASE}/ide" ] && [ "$(ls -A "${SRC_BASE}/ide")" ]; then
     rm -rf "${INSTALL_DIR}/ide"
-    cp -r src/ide "${INSTALL_DIR}/ide"
+    cp -r "${SRC_BASE}/ide" "${INSTALL_DIR}/ide"
     chmod +x "${INSTALL_DIR}/ide/main"
 else
-    printf "${RED}RQTLL Installer: ${NC}No se encontraron los archivos de la IDE.\n"
+    printf "${RED}RQTLL Installer: ${NC}No se encontraron los archivos de la IDE en ${SRC_BASE}/ide.\n"
     exit 1
 fi
 
-if [ -f "src/service/rqtll_service" ]; then
-    cp src/service/rqtll_service "${SERVICE_BIN}"
+if [ -f "${SRC_BASE}/service/rqtll_service" ]; then
+    cp "${SRC_BASE}/service/rqtll_service" "${SERVICE_BIN}"
     chmod +x "${SERVICE_BIN}"
-elif [ -f "src/service/rqtll_rcl_utils" ]; then
-    cp src/service/rqtll_rcl_utils "${SERVICE_BIN}"
+elif [ -f "${SRC_BASE}/service/rqtll_rcl_utils" ]; then
+    cp "${SRC_BASE}/service/rqtll_rcl_utils" "${SERVICE_BIN}"
     chmod +x "${SERVICE_BIN}"
 else
-    printf "${RED}RQTLL Installer: ${NC}No se encontraron los archivos del backend.\n"
+    printf "${RED}RQTLL Installer: ${NC}No se encontraron los archivos del backend en ${SRC_BASE}/service.\n"
     exit 1
 fi
 
-if [ -f "src/service/image_bridge.py" ]; then
-    cp src/service/image_bridge.py "${SHARE_DIR}/image_bridge.py"
+if [ -f "${SRC_BASE}/service/image_bridge.py" ]; then
+    cp "${SRC_BASE}/service/image_bridge.py" "${SHARE_DIR}/image_bridge.py"
     chmod +x "${SHARE_DIR}/image_bridge.py"
 else
     if [ -f "../rqtll-service/src/services/image_bridge.py" ]; then
@@ -84,7 +104,6 @@ else
         exit 1
     fi
 fi
-
 
 printf "${BLUE}RQTLL Installer: ${NC}Creando script de arranque...\n"
 
@@ -103,11 +122,12 @@ exec ./main "$@"
 EOF
 chmod +x "${IDE_BIN_LINK}"
 
-
 printf "${BLUE}RQTLL Installer: ${NC}Instalando iconos...\n"
 
 LOGO_SOURCE=""
-for path in "../rqtll-components/assets/branding/logo-main-color.svg" "src/ide/external/rqtll_components/assets/branding/logo-main-color.svg" "/opt/rqtll/ide/external/rqtll_components/assets/branding/logo-main-color.svg"; do
+for path in "../rqtll-components/assets/branding/logo-main-color.svg" \
+            "${SRC_BASE}/ide/external/rqtll_components/assets/branding/logo-main-color.svg" \
+            "/opt/rqtll/ide/external/rqtll_components/assets/branding/logo-main-color.svg"; do
     if [ -f "${path}" ]; then
         LOGO_SOURCE="${path}"
         break
@@ -127,7 +147,6 @@ else
     printf "${RED}RQTLL Installer: ${NC}No se encontró el logotipo oficial.\n"
     exit 1
 fi
-
 
 printf "${BLUE}RQTLL Installer: ${NC}Creando lanzadores...\n"
 
@@ -151,11 +170,10 @@ if [ -n "${SUDO_USER:-}" ]; then
     chown "${SUDO_USER}:${SUDO_USER}" "${USER_DESKTOP_DIR}/rqtll.desktop" || true
 fi
 
-# Cleanup temporary clone
 if [ "${CLONED_TEMP}" -eq 1 ]; then
     printf "${BLUE}RQTLL Installer: ${NC}Limpiando directorios temporales clonados...\n"
     cd /
     rm -rf "${TEMP_DIR}"
 fi
 
-printf "${GREEN}RQTLL Installer: ${NC}Instalación completada con éxito\n"
+printf "${GREEN}RQTLL Installer: ${NC}Instalación completada con éxito para ${TARGET_ARCH}\n"

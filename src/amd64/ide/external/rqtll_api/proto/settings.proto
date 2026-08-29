@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+package rqtll.api.v1;
+
+import "types.proto";
+
+message Setting {
+  string key = 1;
+  string value = 2;
+}
+
+message GetSettingsRequest {
+  string scope = 1; // e.g. "user", "workspace", or path to config
+  string key = 2;
+}
+
+message SettingResponse {
+  Setting setting = 1;
+  Status status = 2;
+}
+
+message SetSettingsRequest {
+  string scope = 1;
+  Setting setting = 2;
+}
+
+message ListSettingsRequest {
+  string scope = 1;
+}
+
+message ListSettingsResponse {
+  repeated Setting settings = 1;
+  Status status = 2;
+}
+
+message WatchSettingsRequest {
+  string scope = 1;
+}
+
+message SettingEvent {
+  enum Type {
+    ADDED = 0;
+    MODIFIED = 1;
+    REMOVED = 2;
+  }
+  Type type = 1;
+  Setting setting = 2;
+}
+
+service SettingsService {
+  rpc Get(GetSettingsRequest) returns (SettingResponse);
+  rpc Set(SetSettingsRequest) returns (Status);
+  rpc List(ListSettingsRequest) returns (ListSettingsResponse);
+  rpc Watch(WatchSettingsRequest) returns (stream SettingEvent);
+}

@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+package rqtll.api.v1;
+
+import "types.proto";
+
+message OpenWorkspaceRequest {
+  string path = 1;
+}
+
+message WorkspacePackageInfo {
+  string name = 1;
+  string path = 2;
+  string build_type = 3;
+}
+
+message OpenWorkspaceResponse {
+  repeated WorkspacePackageInfo packages = 1;
+  Status status = 2;
+}
+
+message ListWorkspacePackagesRequest {
+  string workspace_path = 1;
+}
+
+message ListWorkspacePackagesResponse {
+  repeated WorkspacePackageInfo packages = 1;
+  Status status = 2;
+}
+
+message CreatePackageRequest {
+  string workspace_path = 1;
+  string name = 2;
+  string build_type = 3;
+  map<string, string> options = 4;
+}
+
+message CreateWorkspaceRequest {
+  string path = 1;
+}
+
+message CreateNodesAndLaunchersRequest {
+  string workspace_path = 1;
+  string package_name = 2;
+  repeated string nodes = 3;
+  repeated string launchers = 4;
+}
+
+service WorkspaceService {
+  rpc OpenWorkspace(OpenWorkspaceRequest) returns (OpenWorkspaceResponse);
+  rpc ListPackages(ListWorkspacePackagesRequest) returns (ListWorkspacePackagesResponse);
+  rpc CreatePackage(CreatePackageRequest) returns (Status);
+  rpc CreateWorkspace(CreateWorkspaceRequest) returns (Status);
+  rpc CreateNodesAndLaunchers(CreateNodesAndLaunchersRequest) returns (Status);
+}

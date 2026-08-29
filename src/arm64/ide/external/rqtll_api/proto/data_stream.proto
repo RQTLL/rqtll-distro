@@ -1,0 +1,67 @@
+syntax = "proto3";
+
+package rqtll.api.v1;
+
+import "types.proto";
+import "google/protobuf/timestamp.proto";
+
+message SubscribeRequest {
+	string topic = 1;
+	string message_type = 2;
+	map<string, string> qos = 3;
+	string encoding = 4;
+}
+
+message TopicMessage {
+	google.protobuf.Timestamp timestamp = 1;
+	string topic = 2;
+	string message_type = 3;
+	bytes data = 4;
+	map<string, string> meta = 5;
+}
+
+message PublishRequest {
+	string topic = 1;
+	string message_type = 2;
+	string encoding = 3;
+	bytes data = 4;
+}
+
+message RecordRequest {
+	repeated string topics = 1;
+	string output_path = 2;
+	string format = 3;
+	bool record_all = 4;
+	map<string, string> metadata = 5;
+}
+
+message RecordEvent {
+	oneof ev {
+		LogEntry log = 1;
+		Status status = 2;
+	}
+}
+
+message PlayRequest {
+	string path = 1;
+	float rate = 2;
+	bool loop = 3;
+	int64 start_offset_ms = 4;
+}
+
+message PlaybackEvent {
+	oneof ev {
+		LogEntry log = 1;
+		Status status = 2;
+	}
+}
+
+service DataStreamService {
+	rpc Subscribe(SubscribeRequest) returns (stream TopicMessage);
+
+	rpc Publish(PublishRequest) returns (Status);
+
+	rpc Record(RecordRequest) returns (stream RecordEvent);
+
+	rpc Play(PlayRequest) returns (stream PlaybackEvent);
+}

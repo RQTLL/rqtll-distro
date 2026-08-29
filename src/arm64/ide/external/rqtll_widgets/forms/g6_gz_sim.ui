@@ -1,0 +1,945 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Widget</class>
+ <widget class="QWidget" name="Widget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>947</width>
+    <height>605</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Widget</string>
+  </property>
+  <layout class="QHBoxLayout" name="horizontalLayout">
+   <item>
+    <layout class="QVBoxLayout" name="verticalLayout_3">
+     <item>
+      <widget class="QFrame" name="frame">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::Shape::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Shadow::Raised</enum>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <widget class="QTabWidget" name="tabWidget">
+          <property name="currentIndex">
+           <number>0</number>
+          </property>
+          <property name="movable">
+           <bool>true</bool>
+          </property>
+          <property name="tabBarAutoHide">
+           <bool>true</bool>
+          </property>
+          <widget class="QWidget" name="tab">
+           <attribute name="title">
+            <string>Tab 1</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout">
+            <item row="1" column="2">
+             <widget class="QTextEdit" name="textEdit">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QFrame" name="frame_2">
+              <property name="frameShape">
+               <enum>QFrame::Shape::StyledPanel</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Shadow::Raised</enum>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_10">
+               <item>
+                <widget class="QScrollArea" name="scrollArea">
+                 <property name="widgetResizable">
+                  <bool>true</bool>
+                 </property>
+                 <widget class="QWidget" name="scrollAreaWidgetContents">
+                  <property name="geometry">
+                   <rect>
+                    <x>0</x>
+                    <y>0</y>
+                    <width>459</width>
+                    <height>521</height>
+                   </rect>
+                  </property>
+                  <layout class="QVBoxLayout" name="verticalLayout">
+                   <item>
+                    <layout class="QHBoxLayout" name="horizontalLayout_18">
+                     <item>
+                      <layout class="QVBoxLayout" name="verticalLayout_8">
+                       <item>
+                        <widget class="QRadioButton" name="RADIOSIMRun">
+                         <property name="text">
+                          <string>Simular</string>
+                         </property>
+                         <property name="checked">
+                          <bool>true</bool>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QRadioButton" name="RADIOSIMPlay">
+                         <property name="text">
+                          <string>Reproducir simulación</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </item>
+                     <item>
+                      <spacer name="horizontalSpacer_7">
+                       <property name="orientation">
+                        <enum>Qt::Orientation::Horizontal</enum>
+                       </property>
+                       <property name="sizeHint" stdset="0">
+                        <size>
+                         <width>40</width>
+                         <height>20</height>
+                        </size>
+                       </property>
+                      </spacer>
+                     </item>
+                    </layout>
+                   </item>
+                   <item>
+                    <widget class="QToolBox" name="toolBox">
+                     <property name="enabled">
+                      <bool>true</bool>
+                     </property>
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="currentIndex">
+                      <number>0</number>
+                     </property>
+                     <widget class="QWidget" name="page">
+                      <property name="geometry">
+                       <rect>
+                        <x>0</x>
+                        <y>0</y>
+                        <width>441</width>
+                        <height>160</height>
+                       </rect>
+                      </property>
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                      <attribute name="label">
+                       <string>Esenciales</string>
+                      </attribute>
+                      <layout class="QVBoxLayout" name="verticalLayout_4">
+                       <item>
+                        <layout class="QHBoxLayout" name="horizontalLayout_2">
+                         <item>
+                          <widget class="QLabel" name="label_3">
+                           <property name="text">
+                            <string>SDF:</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QLineEdit" name="EDITSdf"/>
+                         </item>
+                         <item>
+                          <widget class="QPushButton" name="BTNSdf">
+                           <property name="text">
+                            <string>PushButton</string>
+                           </property>
+                          </widget>
+                         </item>
+                        </layout>
+                       </item>
+                       <item>
+                        <layout class="QHBoxLayout" name="horizontalLayout_21">
+                         <item>
+                          <widget class="QLabel" name="label_12">
+                           <property name="text">
+                            <string>Configuración de Gazebo:</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QLineEdit" name="EDITSdf_3"/>
+                         </item>
+                         <item>
+                          <widget class="QPushButton" name="BTNSdf_3">
+                           <property name="text">
+                            <string>PushButton</string>
+                           </property>
+                          </widget>
+                         </item>
+                        </layout>
+                       </item>
+                       <item>
+                        <layout class="QHBoxLayout" name="horizontalLayout_3">
+                         <property name="sizeConstraint">
+                          <enum>QLayout::SizeConstraint::SetFixedSize</enum>
+                         </property>
+                         <item>
+                          <widget class="QLabel" name="label_2">
+                           <property name="text">
+                            <string>Modo de ejecución:</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QComboBox" name="COMBORunMode">
+                           <property name="sizePolicy">
+                            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                             <horstretch>0</horstretch>
+                             <verstretch>0</verstretch>
+                            </sizepolicy>
+                           </property>
+                           <item>
+                            <property name="text">
+                             <string>Completo</string>
+                            </property>
+                           </item>
+                           <item>
+                            <property name="text">
+                             <string>Solo servidor</string>
+                            </property>
+                           </item>
+                           <item>
+                            <property name="text">
+                             <string>Solo GUI</string>
+                            </property>
+                           </item>
+                          </widget>
+                         </item>
+                        </layout>
+                       </item>
+                       <item>
+                        <spacer name="verticalSpacer">
+                         <property name="orientation">
+                          <enum>Qt::Orientation::Vertical</enum>
+                         </property>
+                         <property name="sizeHint" stdset="0">
+                          <size>
+                           <width>20</width>
+                           <height>40</height>
+                          </size>
+                         </property>
+                        </spacer>
+                       </item>
+                      </layout>
+                     </widget>
+                     <widget class="QWidget" name="page_2">
+                      <property name="geometry">
+                       <rect>
+                        <x>0</x>
+                        <y>0</y>
+                        <width>441</width>
+                        <height>190</height>
+                       </rect>
+                      </property>
+                      <attribute name="label">
+                       <string>Avanzado</string>
+                      </attribute>
+                      <layout class="QVBoxLayout" name="verticalLayout_5">
+                       <item>
+                        <layout class="QHBoxLayout" name="horizontalLayout_5">
+                         <item>
+                          <widget class="QLabel" name="label_4">
+                           <property name="text">
+                            <string>Frecuencia die actualización:</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QDoubleSpinBox" name="SPINHzRate">
+                           <property name="sizePolicy">
+                            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                             <horstretch>0</horstretch>
+                             <verstretch>0</verstretch>
+                            </sizepolicy>
+                           </property>
+                           <property name="maximum">
+                            <double>1000.000000000000000</double>
+                           </property>
+                           <property name="value">
+                            <double>1.000000000000000</double>
+                           </property>
+                          </widget>
+                         </item>
+                        </layout>
+                       </item>
+                       <item>
+                        <layout class="QHBoxLayout" name="horizontalLayout_6">
+                         <item>
+                          <widget class="QCheckBox" name="CHECKhtfl_2">
+                           <property name="text">
+                            <string>Semilla aleatoria</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QSpinBox" name="SPINSeed">
+                           <property name="sizePolicy">
+                            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                             <horstretch>0</horstretch>
+                             <verstretch>0</verstretch>
+                            </sizepolicy>
+                           </property>
+                           <property name="maximum">
+                            <number>9999999</number>
+                           </property>
+                          </widget>
+                         </item>
+                        </layout>
+                       </item>
+                       <item>
+                        <layout class="QHBoxLayout" name="horizontalLayout_4">
+                         <item>
+                          <widget class="QRadioButton" name="RADIORunAtStart">
+                           <property name="text">
+                            <string>Autoreproducir al iniciar</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <spacer name="horizontalSpacer">
+                           <property name="orientation">
+                            <enum>Qt::Orientation::Horizontal</enum>
+                           </property>
+                           <property name="sizeHint" stdset="0">
+                            <size>
+                             <width>40</width>
+                             <height>20</height>
+                            </size>
+                           </property>
+                          </spacer>
+                         </item>
+                        </layout>
+                       </item>
+                       <item>
+                        <layout class="QHBoxLayout" name="horizontalLayout_17">
+                         <item>
+                          <widget class="QRadioButton" name="RADIOWaitAssets">
+                           <property name="text">
+                            <string>Esperar recursos antes de simular</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <spacer name="horizontalSpacer_6">
+                           <property name="orientation">
+                            <enum>Qt::Orientation::Horizontal</enum>
+                           </property>
+                           <property name="sizeHint" stdset="0">
+                            <size>
+                             <width>40</width>
+                             <height>20</height>
+                            </size>
+                           </property>
+                          </spacer>
+                         </item>
+                        </layout>
+                       </item>
+                       <item>
+                        <spacer name="verticalSpacer_2">
+                         <property name="orientation">
+                          <enum>Qt::Orientation::Vertical</enum>
+                         </property>
+                         <property name="sizeHint" stdset="0">
+                          <size>
+                           <width>20</width>
+                           <height>40</height>
+                          </size>
+                         </property>
+                        </spacer>
+                       </item>
+                      </layout>
+                     </widget>
+                     <widget class="QWidget" name="page_5">
+                      <property name="geometry">
+                       <rect>
+                        <x>0</x>
+                        <y>0</y>
+                        <width>427</width>
+                        <height>247</height>
+                       </rect>
+                      </property>
+                      <attribute name="label">
+                       <string>Motor</string>
+                      </attribute>
+                      <layout class="QVBoxLayout" name="verticalLayout_9">
+                       <item>
+                        <layout class="QHBoxLayout" name="horizontalLayout_22">
+                         <item>
+                          <widget class="QLabel" name="label_13">
+                           <property name="text">
+                            <string>Motor de fisicas</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QComboBox" name="COMBOPysicsEngine">
+                           <property name="sizePolicy">
+                            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                             <horstretch>0</horstretch>
+                             <verstretch>0</verstretch>
+                            </sizepolicy>
+                           </property>
+                           <item>
+                            <property name="text">
+                             <string>DART</string>
+                            </property>
+                           </item>
+                          </widget>
+                         </item>
+                        </layout>
+                       </item>
+                       <item>
+                        <layout class="QHBoxLayout" name="horizontalLayout_23">
+                         <item>
+                          <widget class="QLabel" name="label_14">
+                           <property name="text">
+                            <string>Motor de randerizado</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QComboBox" name="COMBORenderEngine">
+                           <property name="sizePolicy">
+                            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                             <horstretch>0</horstretch>
+                             <verstretch>0</verstretch>
+                            </sizepolicy>
+                           </property>
+                           <item>
+                            <property name="text">
+                             <string>OGRE2</string>
+                            </property>
+                           </item>
+                           <item>
+                            <property name="text">
+                             <string>OGRE</string>
+                            </property>
+                           </item>
+                          </widget>
+                         </item>
+                        </layout>
+                       </item>
+                       <item>
+                        <layout class="QHBoxLayout" name="horizontalLayout_24">
+                         <item>
+                          <widget class="QLabel" name="label_15">
+                           <property name="text">
+                            <string>Motor de randerizado para la GUI</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QComboBox" name="COMBOGUIEngine">
+                           <property name="sizePolicy">
+                            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                             <horstretch>0</horstretch>
+                             <verstretch>0</verstretch>
+                            </sizepolicy>
+                           </property>
+                           <item>
+                            <property name="text">
+                             <string>OGRE2</string>
+                            </property>
+                           </item>
+                           <item>
+                            <property name="text">
+                             <string>OGRE</string>
+                            </property>
+                           </item>
+                          </widget>
+                         </item>
+                        </layout>
+                       </item>
+                       <item>
+                        <layout class="QHBoxLayout" name="horizontalLayout_25">
+                         <item>
+                          <widget class="QLabel" name="label_16">
+                           <property name="text">
+                            <string>API</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QComboBox" name="COMBOAPI">
+                           <property name="sizePolicy">
+                            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                             <horstretch>0</horstretch>
+                             <verstretch>0</verstretch>
+                            </sizepolicy>
+                           </property>
+                           <item>
+                            <property name="text">
+                             <string>Opengl (default)</string>
+                            </property>
+                           </item>
+                           <item>
+                            <property name="text">
+                             <string>Vulkan (beta)</string>
+                            </property>
+                           </item>
+                           <item>
+                            <property name="text">
+                             <string>Metal (Apple only)</string>
+                            </property>
+                           </item>
+                          </widget>
+                         </item>
+                        </layout>
+                       </item>
+                       <item>
+                        <layout class="QHBoxLayout" name="horizontalLayout_26">
+                         <item>
+                          <widget class="QLabel" name="label_17">
+                           <property name="text">
+                            <string>API GUI</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QComboBox" name="COMBOAPIGUI">
+                           <property name="sizePolicy">
+                            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                             <horstretch>0</horstretch>
+                             <verstretch>0</verstretch>
+                            </sizepolicy>
+                           </property>
+                           <item>
+                            <property name="text">
+                             <string>Opengl (default)</string>
+                            </property>
+                           </item>
+                           <item>
+                            <property name="text">
+                             <string>Vulkan (beta)</string>
+                            </property>
+                           </item>
+                           <item>
+                            <property name="text">
+                             <string>Metal (Apple only)</string>
+                            </property>
+                           </item>
+                          </widget>
+                         </item>
+                        </layout>
+                       </item>
+                       <item>
+                        <layout class="QHBoxLayout" name="horizontalLayout_27">
+                         <item>
+                          <widget class="QLabel" name="label_18">
+                           <property name="text">
+                            <string>API Server</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QComboBox" name="COMBOAPIServer">
+                           <property name="sizePolicy">
+                            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                             <horstretch>0</horstretch>
+                             <verstretch>0</verstretch>
+                            </sizepolicy>
+                           </property>
+                           <item>
+                            <property name="text">
+                             <string>Opengl (default)</string>
+                            </property>
+                           </item>
+                           <item>
+                            <property name="text">
+                             <string>Vulkan (beta)</string>
+                            </property>
+                           </item>
+                           <item>
+                            <property name="text">
+                             <string>Metal (Apple only)</string>
+                            </property>
+                           </item>
+                          </widget>
+                         </item>
+                        </layout>
+                       </item>
+                      </layout>
+                     </widget>
+                     <widget class="QWidget" name="page_4">
+                      <property name="geometry">
+                       <rect>
+                        <x>0</x>
+                        <y>0</y>
+                        <width>441</width>
+                        <height>127</height>
+                       </rect>
+                      </property>
+                      <attribute name="label">
+                       <string>Simulación distrubuida</string>
+                      </attribute>
+                      <layout class="QVBoxLayout" name="verticalLayout_7">
+                       <item>
+                        <layout class="QHBoxLayout" name="horizontalLayout_14">
+                         <item>
+                          <widget class="QLabel" name="label_8">
+                           <property name="text">
+                            <string>Secundarios esperados:</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QSpinBox" name="SPINSecondaries">
+                           <property name="sizePolicy">
+                            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                             <horstretch>0</horstretch>
+                             <verstretch>0</verstretch>
+                            </sizepolicy>
+                           </property>
+                          </widget>
+                         </item>
+                        </layout>
+                       </item>
+                       <item>
+                        <layout class="QHBoxLayout" name="horizontalLayout_15">
+                         <item>
+                          <widget class="QLabel" name="label_9">
+                           <property name="text">
+                            <string>Rol:</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QComboBox" name="COMBOSecondary">
+                           <property name="sizePolicy">
+                            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                             <horstretch>0</horstretch>
+                             <verstretch>0</verstretch>
+                            </sizepolicy>
+                           </property>
+                           <item>
+                            <property name="text">
+                             <string>Primario</string>
+                            </property>
+                           </item>
+                           <item>
+                            <property name="text">
+                             <string>Secundario</string>
+                            </property>
+                           </item>
+                          </widget>
+                         </item>
+                        </layout>
+                       </item>
+                       <item>
+                        <spacer name="verticalSpacer_4">
+                         <property name="orientation">
+                          <enum>Qt::Orientation::Vertical</enum>
+                         </property>
+                         <property name="sizeHint" stdset="0">
+                          <size>
+                           <width>20</width>
+                           <height>40</height>
+                          </size>
+                         </property>
+                        </spacer>
+                       </item>
+                      </layout>
+                     </widget>
+                     <widget class="QWidget" name="page_3">
+                      <property name="geometry">
+                       <rect>
+                        <x>0</x>
+                        <y>0</y>
+                        <width>427</width>
+                        <height>285</height>
+                       </rect>
+                      </property>
+                      <attribute name="label">
+                       <string>Grabación</string>
+                      </attribute>
+                      <layout class="QVBoxLayout" name="verticalLayout_6">
+                       <item>
+                        <layout class="QHBoxLayout" name="horizontalLayout_7">
+                         <item>
+                          <widget class="QCheckBox" name="CHECKRecord">
+                           <property name="text">
+                            <string>Grabar simulación</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <spacer name="horizontalSpacer_2">
+                           <property name="orientation">
+                            <enum>Qt::Orientation::Horizontal</enum>
+                           </property>
+                           <property name="sizeHint" stdset="0">
+                            <size>
+                             <width>40</width>
+                             <height>20</height>
+                            </size>
+                           </property>
+                          </spacer>
+                         </item>
+                        </layout>
+                       </item>
+                       <item>
+                        <layout class="QHBoxLayout" name="horizontalLayout_8">
+                         <item>
+                          <widget class="QLabel" name="label">
+                           <property name="text">
+                            <string>Ruta:</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QLineEdit" name="EDITRecordDir"/>
+                         </item>
+                         <item>
+                          <widget class="QPushButton" name="BTNRecordDir">
+                           <property name="text">
+                            <string>PushButton</string>
+                           </property>
+                          </widget>
+                         </item>
+                        </layout>
+                       </item>
+                       <item>
+                        <layout class="QHBoxLayout" name="horizontalLayout_9">
+                         <item>
+                          <widget class="QCheckBox" name="CHECKRecordMaterials">
+                           <property name="text">
+                            <string>Guardar mallas y materiales</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <spacer name="horizontalSpacer_3">
+                           <property name="orientation">
+                            <enum>Qt::Orientation::Horizontal</enum>
+                           </property>
+                           <property name="sizeHint" stdset="0">
+                            <size>
+                             <width>40</width>
+                             <height>20</height>
+                            </size>
+                           </property>
+                          </spacer>
+                         </item>
+                        </layout>
+                       </item>
+                       <item>
+                        <layout class="QHBoxLayout" name="horizontalLayout_10">
+                         <property name="sizeConstraint">
+                          <enum>QLayout::SizeConstraint::SetFixedSize</enum>
+                         </property>
+                         <item>
+                          <widget class="QLabel" name="label_5">
+                           <property name="text">
+                            <string>Grabar tópico:</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QComboBox" name="COMBORecordTopics">
+                           <property name="sizePolicy">
+                            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                             <horstretch>0</horstretch>
+                             <verstretch>0</verstretch>
+                            </sizepolicy>
+                           </property>
+                           <item>
+                            <property name="text">
+                             <string>Ninguno</string>
+                            </property>
+                           </item>
+                           <item>
+                            <property name="text">
+                             <string>Todos</string>
+                            </property>
+                           </item>
+                          </widget>
+                         </item>
+                        </layout>
+                       </item>
+                       <item>
+                        <layout class="QHBoxLayout" name="horizontalLayout_12">
+                         <item>
+                          <widget class="QCheckBox" name="CHECKRecordOverwrite">
+                           <property name="text">
+                            <string>Sobreescribir archivos</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <spacer name="horizontalSpacer_4">
+                           <property name="orientation">
+                            <enum>Qt::Orientation::Horizontal</enum>
+                           </property>
+                           <property name="sizeHint" stdset="0">
+                            <size>
+                             <width>40</width>
+                             <height>20</height>
+                            </size>
+                           </property>
+                          </spacer>
+                         </item>
+                        </layout>
+                       </item>
+                       <item>
+                        <layout class="QHBoxLayout" name="horizontalLayout_11">
+                         <item>
+                          <widget class="QLabel" name="label_6">
+                           <property name="text">
+                            <string>Intervalo de actualización:</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QDoubleSpinBox" name="SPINRecordPeriod">
+                           <property name="sizePolicy">
+                            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                             <horstretch>0</horstretch>
+                             <verstretch>0</verstretch>
+                            </sizepolicy>
+                           </property>
+                           <property name="maximum">
+                            <double>1000.000000000000000</double>
+                           </property>
+                           <property name="value">
+                            <double>1.000000000000000</double>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QLabel" name="label_7">
+                           <property name="text">
+                            <string>s</string>
+                           </property>
+                          </widget>
+                         </item>
+                        </layout>
+                       </item>
+                       <item>
+                        <layout class="QHBoxLayout" name="horizontalLayout_13">
+                         <item>
+                          <widget class="QCheckBox" name="CHECKRecordZip">
+                           <property name="text">
+                            <string>Comprimir al finalizar</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <spacer name="horizontalSpacer_5">
+                           <property name="orientation">
+                            <enum>Qt::Orientation::Horizontal</enum>
+                           </property>
+                           <property name="sizeHint" stdset="0">
+                            <size>
+                             <width>40</width>
+                             <height>20</height>
+                            </size>
+                           </property>
+                          </spacer>
+                         </item>
+                        </layout>
+                       </item>
+                       <item>
+                        <spacer name="verticalSpacer_3">
+                         <property name="orientation">
+                          <enum>Qt::Orientation::Vertical</enum>
+                         </property>
+                         <property name="sizeHint" stdset="0">
+                          <size>
+                           <width>20</width>
+                           <height>40</height>
+                          </size>
+                         </property>
+                        </spacer>
+                       </item>
+                      </layout>
+                     </widget>
+                    </widget>
+                   </item>
+                   <item>
+                    <layout class="QHBoxLayout" name="horizontalLayout_20">
+                     <item>
+                      <widget class="QLabel" name="label_11">
+                       <property name="text">
+                        <string>Simulación:</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QLineEdit" name="EDITSIMPlay"/>
+                     </item>
+                     <item>
+                      <widget class="QPushButton" name="BTNSIMPlay">
+                       <property name="text">
+                        <string>PushButton</string>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </item>
+                   <item>
+                    <spacer name="verticalSpacer_5">
+                     <property name="orientation">
+                      <enum>Qt::Orientation::Vertical</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>20</width>
+                       <height>40</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="BTNConnect">
+                     <property name="text">
+                      <string>PushButton</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

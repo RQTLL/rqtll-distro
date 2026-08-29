@@ -114,7 +114,7 @@ El instalador [install.sh](install.sh) configura RQTLL de forma integrada en el 
 ### Instalación Rápida (One-Liner Remoto)
 Si eres un usuario final y no tienes clonado el proyecto, puedes instalar todo ejecutando directamente:
 ```bash
-sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/RQTLL/rqtll-distro/main/install.sh)"
+sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/RQTLL/rqtll-distro/main/install.sh)"
 ```
 *Nota: Si se ejecuta vía curl, el instalador clonará temporalmente los binarios precompilados de `rqtll-distro` y limpiará el sistema al finalizar.*
 

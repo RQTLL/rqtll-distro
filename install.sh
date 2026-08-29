@@ -90,6 +90,7 @@ printf "${BLUE}RQTLL Installer: ${NC}Creando script de arranque...\n"
 cat << 'EOF' > "${IDE_BIN_LINK}"
 #!/usr/bin/env bash
 # wrapper script for rqtll-ide to load libraries and resource files correctly
+export PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python
 
 if ! pgrep -x "rqtll_service" >/dev/null && ! pgrep -f "rqtll-service" >/dev/null; then
     /usr/sbin/rqtll-service >/dev/null 2>&1 &

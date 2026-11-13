@@ -112,13 +112,25 @@ cat << 'EOF' > "${IDE_BIN_LINK}"
 # wrapper script for rqtll-ide to load libraries and resource files correctly
 export PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python
 
+SERVICE_PID=""
+
+cleanup() {
+    if [ -n "${SERVICE_PID}" ] && kill -0 "${SERVICE_PID}" 2>/dev/null; then
+        kill "${SERVICE_PID}" 2>/dev/null
+        wait "${SERVICE_PID}" 2>/dev/null
+    fi
+}
+
+trap cleanup EXIT INT TERM
+
 if ! pgrep -x "rqtll_service" >/dev/null && ! pgrep -f "rqtll-service" >/dev/null; then
     /usr/sbin/rqtll-service >/dev/null 2>&1 &
+    SERVICE_PID=$!
     sleep 0.5
 fi
 
-cd /opt/rqtll/ide
-exec ./main "$@"
+cd /opt/rqtll/ide || exit 1
+./main "$@"
 EOF
 chmod +x "${IDE_BIN_LINK}"
 

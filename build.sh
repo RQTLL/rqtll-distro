@@ -5,6 +5,151 @@ set -euo pipefail
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 BLUE='\033[0;34m'
+NC='\033[0m'
+
+RAW_ARCH=$(dpkg --print-architecture 2>/dev/null || uname -m)
+case "${RAW_ARCH}" in
+    x86_64|amd64)
+        TARGET_ARCH="amd64"
+        ;;
+    aarch64|arm64)
+        TARGET_ARCH="arm64"
+        ;;
+    *)
+        printf "${RED}RQTLL Build: ${NC}Arquitectura no soportada: %s\n" "${RAW_ARCH}"
+        exit 1
+        ;;
+esac
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+WORKSPACE_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
+DIST_DIR="${WORKSPACE_DIR}/rqtll-distro"
+IDE_DIR="${WORKSPACE_DIR}/rqtll-ide"
+SERVICE_DIR="${WORKSPACE_DIR}/rqtll-service"
+OUTPUT_SRC="${DIST_DIR}/src/${TARGET_ARCH}"
+
+printf "${BLUE}RQTLL Build: ${GREEN}${TARGET_ARCH}${NC}\n"
+printf "${BLUE}RQTLL Build: ${NC}Verificando dependencias de compilación del sistema...\n"
+
+APT_PKGS=()
+command -v git >/dev/null 2>&1 || APT_PKGS+=("git")
+command -v curl >/dev/null 2>&1 || APT_PKGS+=("curl")
+if ! command -v make >/dev/null 2>&1 || ! command -v gcc >/dev/null 2>&1 || ! command -v g++ >/dev/null 2>&1; then
+    APT_PKGS+=("build-essential")
+fi
+command -v python3 >/dev/null 2>&1 || APT_PKGS+=("python3")
+if ! command -v pip3 >/dev/null 2>&1 && ! command -v pip >/dev/null 2>&1; then
+    APT_PKGS+=("python3-pip")
+fi
+command -v patchelf >/dev/null 2>&1 || APT_PKGS+=("patchelf")
+command -v protoc >/dev/null 2>&1 || APT_PKGS+=("protobuf-compiler")
+dpkg -s libxcb-cursor0 >/dev/null 2>&1 || APT_PKGS+=("libxcb-cursor0")
+
+if [ "${#APT_PKGS[@]}" -gt 0 ]; then
+    printf "${BLUE}RQTLL Build: ${NC}Instalando paquetes del sistema faltantes: %s\n" "${APT_PKGS[*]}"
+    sudo apt-get update -qq
+    sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -qq "${APT_PKGS[@]}"
+fi
+
+printf "${BLUE}RQTLL Build: ${NC}Verificando repositorios del espacio de trabajo...\n"
+for repo in rqtll-api rqtll-components rqtll-widgets rqtll-ide rqtll-service; do
+    REPO_PATH="${WORKSPACE_DIR}/${repo}"
+    if [ ! -d "${REPO_PATH}" ]; then
+        printf "${BLUE}RQTLL Build: ${NC}Clonando repositorio ${repo}...\n"
+        git clone --recursive "https://github.com/RQTLL/${repo}.git" "${REPO_PATH}"
+    fi
+done
+
+# Verificación e instalación desasistida de Rust y Cargo
+if [ -f "${HOME}/.cargo/env" ]; then
+    # shellcheck disable=SC1091
+    source "${HOME}/.cargo/env"
+fi
+
+if ! command -v cargo >/dev/null 2>&1; then
+    printf "${BLUE}RQTLL Build: ${NC}Instalando Rust y Cargo de forma desasistida vía rustup...\n"
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+    # shellcheck disable=SC1091
+    source "${HOME}/.cargo/env"
+    grep -qxF 'source "$HOME/.cargo/env"' "${HOME}/.bashrc" 2>/dev/null || echo 'source "$HOME/.cargo/env"' >> "${HOME}/.bashrc"
+    if [ -f "${HOME}/.zshrc" ]; then
+        grep -qxF 'source "$HOME/.cargo/env"' "${HOME}/.zshrc" || echo 'source "$HOME/.cargo/env"' >> "${HOME}/.zshrc"
+    fi
+else
+    rustup update || true
+fi
+
+# Verificación independiente de paquetes Python (Nuitka, PySide6, gRPC y Protobuf)
+PIP_CMD="pip3"
+command -v pip3 >/dev/null 2>&1 || PIP_CMD="pip"
+
+PY_PKGS=()
+if ! command -v nuitka >/dev/null 2>&1 && [ ! -f "${HOME}/.local/bin/nuitka" ] && ! python3 -c "import nuitka" >/dev/null 2>&1; then
+    PY_PKGS+=("nuitka")
+fi
+python3 -c "import PySide6" >/dev/null 2>&1 || PY_PKGS+=("pyside6")
+python3 -c "import grpc_tools" >/dev/null 2>&1 || PY_PKGS+=("grpcio-tools")
+python3 -c "import google.protobuf" >/dev/null 2>&1 || PY_PKGS+=("protobuf")
+
+if [ "${#PY_PKGS[@]}" -gt 0 ]; then
+    printf "${BLUE}RQTLL Build: ${NC}Instalando paquetes de Python faltantes: %s\n" "${PY_PKGS[*]}"
+    "${PIP_CMD}" install --user --break-system-packages "${PY_PKGS[@]}" || \
+    "${PIP_CMD}" install --user "${PY_PKGS[@]}"
+fi
+
+NUITKA_CMD=(python3 -m nuitka)
+if command -v nuitka >/dev/null 2>&1; then
+    NUITKA_CMD=(nuitka)
+elif [ -f "${HOME}/.local/bin/nuitka" ]; then
+    NUITKA_CMD=("${HOME}/.local/bin/nuitka")
+fi
+
+rm -rf "${OUTPUT_SRC}"
+mkdir -p "${OUTPUT_SRC}/ide" "${OUTPUT_SRC}/service"
+
+printf "${BLUE}RQTLL Build: ${NC}Compilando backend en Rust (${OUTPUT_SRC}/service)...\n"
+cd "${SERVICE_DIR}"
+cargo build --release
+
+cp "target/release/rqtll_service" "${OUTPUT_SRC}/service/rqtll_service"
+cp "src/services/image_bridge.py" "${OUTPUT_SRC}/service/image_bridge.py"
+chmod +x "${OUTPUT_SRC}/service/rqtll_service" "${OUTPUT_SRC}/service/image_bridge.py"
+
+printf "${BLUE}RQTLL Build: ${NC}Compilando frontend con Nuitka (${OUTPUT_SRC}/ide)...\n"
+cd "${IDE_DIR}"
+rm -rf main.build main.dist
+
+if [ -f "external/rqtll_api/py.sh" ]; then
+    cd external/rqtll_api
+    chmod +x py.sh || true
+    bash ./py.sh
+    cd "${IDE_DIR}"
+fi
+
+PYTHONPATH=external/rqtll_api/py "${NUITKA_CMD[@]}" --standalone --enable-plugin=pyside6 main.py
+if [ -f "main.dist/main.bin" ]; then
+    mv "main.dist/main.bin" "main.dist/main"
+fi
+
+mkdir -p "main.dist/external"
+cp -r "external/rqtll_components" "main.dist/external/"
+cp -r "external/rqtll_widgets" "main.dist/external/"
+cp -r "external/rqtll_api" "main.dist/external/"
+
+rm -rf "${OUTPUT_SRC}/ide"
+mkdir -p "${OUTPUT_SRC}/ide"
+cp -a main.dist/. "${OUTPUT_SRC}/ide/"
+chmod +x "${OUTPUT_SRC}/ide/main"
+rm -rf main.build main.dist
+rm -rf "${OUTPUT_SRC}/ide/external/rqtll_components/releases/"
+
+printf "${GREEN}RQTLL Build: ${NC}Construcción finalizada con éxito para ${TARGET_ARCH}\n"#!/usr/bin/env bash
+# RQTLL Distribution Build Script
+set -euo pipefail
+
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
 NC='\033[0;37m'
 
 RAW_ARCH=$(dpkg --print-architecture 2>/dev/null || uname -m)

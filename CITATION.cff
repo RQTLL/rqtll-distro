@@ -1,7 +1,7 @@
 cff-version: 1.2.0
 message: "If you use RQTLL in your research, please cite it using these metadata."
-title: "RQTLL: ROS 2 QT LATEST LEVEL"
-abstract: "The open and modern ecosystem for agile development and introspection of robots in ROS 2."
+title: "RQTLL DISTRO"
+abstract: "Binaries and scripts for compiling and installing RQTLL"
 type: software
 version: 1.0.0
 date-released: 2026-08-10
@@ -13,5 +13,5 @@ authors:
   - family-names: "Garcia"
     given-names: "Francesco"
     orcid: "https://orcid.org/0000-0002-8571-914X"
-repository-code: "https://github.com/RQTLL"
+repository-code: "https://github.com/RQTLL/rqtll-distro"
 url: "https://rqtll.github.io/"

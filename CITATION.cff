@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use RQTLL in your research, please cite it using these metadata."
-title: "RQTLL: ROS2 Qt Layer for Low-level operations"
+title: "RQTLL: ROS 2 QT LATEST LEVEL"
 abstract: "The open and modern ecosystem for agile development and introspection of robots in ROS 2."
 type: software
 version: 1.0.0
@@ -14,4 +14,4 @@ authors:
     given-names: "Francesco"
     orcid: "https://orcid.org/0000-0002-8571-914X"
 repository-code: "https://github.com/RQTLL"
-url: "https://github.io"
+url: "https://rqtll.github.io/"

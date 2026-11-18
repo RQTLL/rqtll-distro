@@ -72,10 +72,10 @@ Para mantener la agilidad del repositorio, la documentación detallada se ha seg
 
 El proyecto utiliza fuentes locales para garantizar consistencia sin conexión a internet.
 
-| Fuente | Uso | Licencia |
-| --- | --- | --- |
-| **Nunito Sans** | Interfaz de Usuario (UI) | OFL |
-| **Ubuntu Nerd Font Mono** | Glifos técnicos e iconos integrados | UFL |
+| Fuente                    | Uso                                 | Licencia |
+| ------------------------- | ----------------------------------- | -------- |
+| **Nunito Sans**           | Interfaz de Usuario (UI)            | OFL      |
+| **Ubuntu Nerd Font Mono** | Glifos técnicos e iconos integrados | UFL      |
 
 ## Uso de Estilos (QSS)
 
@@ -103,7 +103,7 @@ if os.path.exists(qss_file):
 La IDE consume la paleta definida en `palette.json` para:
 
 1. Replicar el esquema visual de Blender en un gráfico de nodos:
-    - **Cabeceras de color según tipo**: Nodos de color azul oscuro (`#0090ff`) y tópicos de color verde azulado (`#068989`).
+    - **Cabeceras de color según tipo**: Nodos de color azul oscuro (`#0090ff`) y tópicos de color verde azulado (`#447979`).
     - **Cuerpo neutral**: Fondos grises (`#2b2b2b`) para mantener la concentración del usuario.
     - **Resaltado de Selección**: Bordes coloridos para indicar elementos seleccionados.
 2. Resaltar palabras reservadas del lenguaje de programación en el editor de texto y terminales con colores del tema.

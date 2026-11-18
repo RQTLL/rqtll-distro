@@ -182,7 +182,7 @@ class Ui_Widget(object):
         self.LABELInfoNew.setText(QCoreApplication.translate("Widget", u"espacio de trabajo", None))
         self.ICONOpen.setText("")
         self.LABELTitleOpen.setText(QCoreApplication.translate("Widget", u"Cargar", None))
-        self.LABELInfoOpen.setText(QCoreApplication.translate("Widget", u"espacio de trabajao", None))
+        self.LABELInfoOpen.setText(QCoreApplication.translate("Widget", u"espacio de trabajo", None))
         self.ICONClone.setText("")
         self.LABELTitleClone.setText(QCoreApplication.translate("Widget", u"Clonar", None))
         self.LABELInfoClone.setText(QCoreApplication.translate("Widget", u"espacio de trabajo", None))

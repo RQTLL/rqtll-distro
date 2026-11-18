@@ -336,7 +336,7 @@ class Ui_Widget(object):
     # setupUi
 
     def retranslateUi(self, Widget):
-        Widget.setWindowTitle(QCoreApplication.translate("Widget", u"RQTLL IDE / Versión de ROS2", None))
+        Widget.setWindowTitle(QCoreApplication.translate("Widget", u"RQTLL IDE / Versión de ROS 2", None))
         
         self.LABELTitleCore1.setText(QCoreApplication.translate("Widget", u"$install_opt_core_title", None))
         self.LABELInfoCore1.setText(QCoreApplication.translate("Widget", u"$install_opt_core_desc", None))
@@ -352,9 +352,9 @@ class Ui_Widget(object):
         self.LABELTitleFull2.setText(QCoreApplication.translate("Widget", u"$install_opt_full_title", None))
         self.LABELInfoFull2.setText(QCoreApplication.translate("Widget", u"$install_opt_full_desc", None))
 
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), QCoreApplication.translate("Widget", u"Versi\u00f3n de ROS2", None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), QCoreApplication.translate("Widget", u"Versi\u00f3n de ROS 2", None))
         self.LABELSearch.setText(QCoreApplication.translate("Widget", u"Buscar", None))
-        self.CBOPT1Search.setText(QCoreApplication.translate("Widget", u"ROS2", None))
+        self.CBOPT1Search.setText(QCoreApplication.translate("Widget", u"ROS 2", None))
         self.CBOPT2Search.setText(QCoreApplication.translate("Widget", u"Python", None))
         self.CBRti.setText(QCoreApplication.translate("Widget", u"rti", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), QCoreApplication.translate("Widget", u"Paquetes extra", None))

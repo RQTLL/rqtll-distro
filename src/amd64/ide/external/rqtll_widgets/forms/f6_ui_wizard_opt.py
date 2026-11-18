@@ -98,7 +98,7 @@ class Ui_Widget(object):
     def retranslateUi(self, Widget):
         Widget.setWindowTitle(QCoreApplication.translate("Widget", u"RQTLL IDE / Opciones de Instalación", None))
         self.LABELTitle.setText(QCoreApplication.translate("Widget", u"Reinstalación", None))
-        self.CBInstallRos.setText(QCoreApplication.translate("Widget", u"Deseo instalar o reconfigurar ROS2 en mi sistema.", None))
+        self.CBInstallRos.setText(QCoreApplication.translate("Widget", u"Deseo instalar o reconfigurar ROS 2 en mi sistema.", None))
         self.BTNBack.setText(QCoreApplication.translate("Widget", u"Regresar", None))
         self.BTNNext.setText(QCoreApplication.translate("Widget", u"Siguiente", None))
         self.BTNCancel.setText(QCoreApplication.translate("Widget", u"Cancelar", None))

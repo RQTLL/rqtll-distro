@@ -200,7 +200,7 @@
              <item>
               <widget class="QLineEdit" name="EDITPKGDescription">
                <property name="placeholderText">
-                <string>Proposito del nuevo paquete de ROS2.</string>
+                <string>Propósito del nuevo paquete de ROS 2.</string>
                </property>
               </widget>
              </item>
@@ -418,7 +418,7 @@
                     </font>
                    </property>
                    <property name="text">
-                    <string>Versión de XML para el archivo package.xml generado para el nuevo paquete de ROS2.</string>
+                    <string>Versión de XML para el archivo package.xml generado para el nuevo paquete de ROS 2.</string>
                    </property>
                    <property name="wordWrap">
                     <bool>true</bool>

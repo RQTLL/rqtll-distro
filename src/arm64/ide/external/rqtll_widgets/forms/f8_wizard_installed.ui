@@ -36,14 +36,14 @@
      <item>
       <widget class="QCheckBox" name="checkBox">
        <property name="text">
-        <string>Cargar ROS2 con la shell</string>
+        <string>Cargar ROS 2 con la shell</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QCheckBox" name="checkBox_2">
        <property name="text">
-        <string>Configurar ROS_DAMAIN_ID (+ufw allow)</string>
+        <string>Configurar ROS_DOMAIN_ID (+ufw allow)</string>
        </property>
       </widget>
      </item>
@@ -52,7 +52,7 @@
        <item>
         <widget class="QLabel" name="label_2">
          <property name="text">
-          <string>ROS_DAMAIN_ID:</string>
+          <string>ROS_DOMAIN_ID:</string>
          </property>
         </widget>
        </item>

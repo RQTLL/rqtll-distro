@@ -149,10 +149,10 @@ class Ui_Widget(object):
 
     def retranslateUi(self, Widget):
         Widget.setWindowTitle(QCoreApplication.translate("Widget", u"RQTLL IDE / Progreso de Instalación", None))
-        self.LABELInstallProgress.setText(QCoreApplication.translate("Widget", u"Instalando ROS2", None))
-        self.CBLoadRosShell.setText(QCoreApplication.translate("Widget", u"Cargar ROS2 con la shell", None))
-        self.CBConfigDomainId.setText(QCoreApplication.translate("Widget", u"Configurar ROS_DAMAIN_ID (+ufw allow)", None))
-        self.LABELDomainId.setText(QCoreApplication.translate("Widget", u"ROS_DAMAIN_ID:", None))
+        self.LABELInstallProgress.setText(QCoreApplication.translate("Widget", u"Instalando ROS 2", None))
+        self.CBLoadRosShell.setText(QCoreApplication.translate("Widget", u"Cargar ROS 2 con la shell", None))
+        self.CBConfigDomainId.setText(QCoreApplication.translate("Widget", u"Configurar ROS_DOMAIN_ID (+ufw allow)", None))
+        self.LABELDomainId.setText(QCoreApplication.translate("Widget", u"ROS_DOMAIN_ID:", None))
         self.BTNBack.setText(QCoreApplication.translate("Widget", u"Regresar", None))
         self.BTNNext.setText(QCoreApplication.translate("Widget", u"Siguiente", None))
         self.BTNCancel.setText(QCoreApplication.translate("Widget", u"Cancelar", None))

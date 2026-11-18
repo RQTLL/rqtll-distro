@@ -596,7 +596,7 @@
                        </rect>
                       </property>
                       <attribute name="label">
-                       <string>Simulación distrubuida</string>
+                       <string>Simulación distribuida</string>
                       </attribute>
                       <layout class="QVBoxLayout" name="verticalLayout_7">
                        <item>

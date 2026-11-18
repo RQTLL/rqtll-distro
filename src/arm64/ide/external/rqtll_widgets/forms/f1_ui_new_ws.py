@@ -716,7 +716,7 @@ class Ui_Widget(object):
         self.LABELPKGInfo.setText(QCoreApplication.translate("Widget", u"Sobre el nuevo paquete", None))
         self.BTNDel_my_pkg.setText("")
         self.LABELPKGDescription.setText(QCoreApplication.translate("Widget", u"Descripci\u00f3n:", None))
-        self.EDITPKGDescription.setPlaceholderText(QCoreApplication.translate("Widget", u"Proposito del nuevo paquete de ROS2.", None))
+        self.EDITPKGDescription.setPlaceholderText(QCoreApplication.translate("Widget", u"Propósito del nuevo paquete de ROS 2.", None))
         self.LABELPKGLicense.setText(QCoreApplication.translate("Widget", u"Licencia:", None))
         self.CBPKGLicense.setItemText(0, QCoreApplication.translate("Widget", u"Apache-2.0", None))
         self.CBPKGLicense.setItemText(1, QCoreApplication.translate("Widget", u"BSL-1.0", None))

@@ -3,28 +3,44 @@
 */
 
 /* Qss variables 
-"themes": {
+  "themes": {
     "light": {
-      "background": "#ffffff",
+      "background": "#f5f5f5",
       "color": "#000000",
       "disabled-bg": "#d9d9d9",
-	  "disabled-color": "#222222",
+      "disabled-color": "#2d344b",
       "accent": "#0090ff",
-      "success": "#068989",
-      "warning": "#e5a436",
-      "error": "#ff4f5e",
+      "success": "#447979",
+      "warning": "#906a29",
+      "error": "#d42f3d",
       "neutral": "#000000",
-      "blue": "#0090ff",
-      "green": "068989",
-      "purple": "c60184",
-      "red": "ff4f5e",
-      "orange": "e5a436"
+      "blue": "#3775a6",
+      "green": "#447979",
+      "purple": "#c60184",
+      "red": "#ff4f5e",
+      "orange": "#906a29",
+      "ansi_black": "#f4f4f4",
+      "ansi_red": "#CA0700",
+      "ansi_green": "#007e3f",
+      "ansi_yellow": "#827005",
+      "ansi_blue": "#0051BA",
+      "ansi_magenta": "#A800B1",
+      "ansi_cyan": "#007c89",
+      "ansi_white": "#181818",
+      "ansi_bright_black": "#9c9c9c",
+      "ansi_bright_red": "#e00000",
+      "ansi_bright_green": "#007e3f",
+      "ansi_bright_yellow": "#7e6d35",
+      "ansi_bright_blue": "#0067ed",
+      "ansi_bright_magenta": "#c300cc",
+      "ansi_bright_cyan": "#357880",
+      "ansi_bright_white": "#4b4b4b"
     },
-"dark": {
-      "background": "#121212",
+    "dark": {
+      "background": "#1e1e1e",
       "color": "#ffffff",
-	  "disabled-bg": "#2e2e2e",
-	  "disabled-color": "#dcdcdc",
+      "disabled-bg": "#2e2e2e",
+      "disabled-color": "#7d91e1",
       "accent": "#0090ff",
       "success": "#3fe1b0",
       "warning": "#ffbd4f",
@@ -34,8 +50,25 @@
       "green": "#3fe1b0",
       "purple": "#fe4aa3",
       "red": "#ff4f5e",
-      "orange": "#ffbd4f"
+      "orange": "#ffbd4f",
+      "ansi_black": "#141417",
+      "ansi_red": "#df5b5b",
+      "ansi_green": "#1DB469",
+      "ansi_yellow": "#FFB638",
+      "ansi_blue": "#28A9FF",
+      "ansi_magenta": "#d04cd7",
+      "ansi_cyan": "#47AEA6",
+      "ansi_white": "#c8c8c8",
+      "ansi_bright_black": "#5b5b5f",
+      "ansi_bright_red": "#fd3333",
+      "ansi_bright_green": "#00FF7F",
+      "ansi_bright_yellow": "#FFDC68",
+      "ansi_bright_blue": "#63E8FF",
+      "ansi_bright_magenta": "#F876FF",
+      "ansi_bright_cyan": "#00FFEA",
+      "ansi_bright_white": "#fbfbfb"
     }
+  }
 */
 
 * {
@@ -48,9 +81,9 @@
 }
 
 /* status colors */
-.status-success { color: #068989; }
-.status-warning { color: #e5a436; }
-.status-error { color: #ff4f5e; }
+.status-success { color: #447979; }
+.status-warning { color: #906a29; }
+.status-error { color: #d42f3d; }
 
 /* Small utility */
 .muted { color: #6b6b6b; }
@@ -96,17 +129,17 @@ QPushButton[role="close"][variant="default"]
 
 QPushButton[role="close"][variant="default"]:hover {
   background: #e6e6e6;
-  border: 2px solid #ff4f5e;
+  border: 2px solid #d42f3d;
 }
 
 QPushButton[role="close"][variant="default"]:pressed {
-  background: #ff4f5e;
+  background: #d42f3d;
   color: #000000;
 }
 
 QPushButton[role="close"][variant="default"]:disabled {
   background: #d9d9d9;
-  color: #222222;
+  color: #2d344b;
   border-color: #c8c8c8;
 }
 
@@ -166,7 +199,7 @@ QWidget[role="in-tab"][variant="default"] QFrame[role="frame-button"][variant="d
 QFrame[role="frame-button"][variant="default"][state="dissabled"],
 QPushButton:disabled {
   background: #d9d9d9;
-  color: #222222;
+  color: #2d344b;
   border-color: #c8c8c8;
 }
 

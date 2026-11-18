@@ -123,7 +123,7 @@ class Ui_Widget(object):
         Widget.setWindowTitle(QCoreApplication.translate("Widget", u"RQTLL IDE / Inicializar Instalador", None))
         self.LABELLogo.setText("")
         self.LABELTitle.setText(QCoreApplication.translate("Widget", u"Bienvenido a RQTLL", None))
-        self.LABELText.setText(QCoreApplication.translate("Widget", u"Este asistente de configuración lo ayudará a configurar ROS2 en su sistema.", None))
+        self.LABELText.setText(QCoreApplication.translate("Widget", u"Este asistente de configuración lo ayudará a configurar ROS 2 en su sistema.", None))
         self.BTNBack.setText(QCoreApplication.translate("Widget", u"Regresar", None))
         self.BTNNext.setText(QCoreApplication.translate("Widget", u"Siguiente", None))
         self.BTNCancel.setText(QCoreApplication.translate("Widget", u"Cancelar", None))

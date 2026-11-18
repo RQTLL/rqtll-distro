@@ -21,7 +21,7 @@
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
-       <string>Versión de ROS2</string>
+       <string>Versión de ROS 2</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_2">
        <item row="0" column="2">

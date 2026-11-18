@@ -107,7 +107,7 @@ if __name__ == "__main__":
         #(Ui_Pkg, "RQTLL IDE / Gestor de instalación", False, False),
         #(Ui_WizInit, "RQTLL IDE / Asistente de Instalación", False, False),
         #(Ui_WizOpt, "RQTLL IDE / Opciones de Instalación", False, False),
-        ### (Ui_WizConfig, "RQTLL IDE / Versión de ROS2", False, False),
+        ### (Ui_WizConfig, "RQTLL IDE / Versión de ROS 2", False, False),
         #(Ui_WizProgress, "RQTLL IDE / Progreso de Instalación", False, False),
         #(Ui_WizClose, "RQTLL IDE / Finalizar Instalación", False, False),
         (Ui_TextEditor, "RQTLL IDE / Editor de código", True, True),

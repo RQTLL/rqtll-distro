@@ -138,7 +138,7 @@ Al optar por instalar ROS 2 se mostrará una alerta sobre la ejecución de tarea
 
 #### `f7_wizard_install_config`
 
-Pantalla para elegir la versión de ROS 2 a instalar, usando la lista de distribuiciones publicadas por el sistema operativo. La ventana cuenta con una pestaña extra para instalar paquetes adicionales relacionados con ROS2, Python y rti.
+Pantalla para elegir la versión de ROS 2 a instalar, usando la lista de distribuiciones publicadas por el sistema operativo. La ventana cuenta con una pestaña extra para instalar paquetes adicionales relacionados con ROS 2, Python y rti.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://github.com/RQTLL/rqtll-components/blob/main/releases/dark/web/A1-WIZARD-3D.webp">
@@ -156,7 +156,7 @@ Una vez elegida la distribución, se muestra una barra de progreso mientras se i
   <img alt="Gestor de paquetes apt" src= "https://github.com/RQTLL/rqtll-components/blob/main/releases/dark/web/A1-WIZARD-4D.webp" width="50%" height="auto">
 </picture>
 
-Una vez finalizada la instalación, se muestra una pantalla con el resumen de la instalación y la posibilidad de cargar las herramientas de ROS2 al abrir una nueva terminal ademas de configurar el firewall de Ubuntu para permitir la comunicación con otras máquinas con ROS2.
+Una vez finalizada la instalación, se muestra una pantalla con el resumen de la instalación y la posibilidad de cargar las herramientas de ROS 2 al abrir una nueva terminal ademas de configurar el firewall de Ubuntu para permitir la comunicación con otras máquinas con ROS 2.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://github.com/RQTLL/rqtll-components/blob/main/releases/dark/web/A1-WIZARD-5D.webp">
@@ -188,7 +188,7 @@ Inspirado en las páginas de inicio como Android Studio o Visual Studio, esta pa
 
 #### `f1_new_ws`
 
-Formulario para la creacion de un nuevo espacio de trabajo, a su vez incluye la opción de crear paquetes de ROS2, nodos y lanzadores.
+Formulario para la creacion de un nuevo espacio de trabajo, a su vez incluye la opción de crear paquetes de ROS 2, nodos y lanzadores.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://github.com/RQTLL/rqtll-components/blob/main/releases/dark/web/A2-START-3D.webp">

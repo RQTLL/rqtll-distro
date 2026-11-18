@@ -274,7 +274,7 @@ class Ui_Widget(object):
         Widget.setWindowTitle(QCoreApplication.translate("Widget", u"RQTLL IDE / Gestor de paquetes", None))
         self.LABELSearch.setText(QCoreApplication.translate("Widget", u"Buscar", None))
         #self.EDITSearch.setText(QCoreApplication.translate("Widget", u"*", None))
-        self.CBOPT1Search.setText(QCoreApplication.translate("Widget", u"ROS2", None))
+        self.CBOPT1Search.setText(QCoreApplication.translate("Widget", u"ROS 2", None))
         self.CBOPT2Search.setText(QCoreApplication.translate("Widget", u"Python", None))
         self.CBRti.setText(QCoreApplication.translate("Widget", u"rti", None))
         #self.BUTTONInstall0.setText(QCoreApplication.translate("Widget", u"Instalar", None))

@@ -311,7 +311,7 @@ O carga un espacio de trabajo existente en el almacenamiento local</string>
              </sizepolicy>
             </property>
             <property name="text">
-             <string>espacio de trabajao</string>
+             <string>espacio de trabajo</string>
             </property>
             <property name="wordWrap">
              <bool>true</bool>
